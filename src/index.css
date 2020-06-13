@@ -6,8 +6,24 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.table_tr{
+  cursor: pointer;
+}
+.table_tr th{
+ position: relative;
+}
+.table_tr:hover th::after{
+  color: #FF4858;
+  content: 'x';
+  position: absolute;
+  color: white;
+  background: #FF4858;
+  height: 18px;
+  width: 18px;
+  left: 12px;
+  top: 13px;
+  font-size: 11px;
+  text-align: center;
+  line-height: 15px;
+  border-radius: 50%;
 }
