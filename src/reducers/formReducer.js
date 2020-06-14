@@ -24,13 +24,9 @@ export const formReducer=(state,action)=>{
              ]
            }]
           case 'SEARCH':
-           const {value}=action
-           const post = state.filter(item =>
-             {
-              return item.name.toLowerCase().includes(value.toLowerCase())
-             } 
-          );
-          console.log(post)
+            return Object.assign({}, state, {
+                searchText: action.value
+            });
          case 'REMOVE_FORM':
            return state.filter(form => form.name !== action.name);
         default:

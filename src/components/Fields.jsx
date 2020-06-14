@@ -1,11 +1,12 @@
 import React from 'react'
-const Fields=({id,label,value,onChange,fieldsType,onChangeSelect,fieldsRequired,onChangeCheckbox})=>(
+
+const Fields=({id,label,value,onChange,fieldsType,onChangeSelect,fieldsRequired,onChangeCheckbox,dataType,name})=>(
     <div className='form-group'>
     <div className="field-1">
         <label>{label}</label>
         <div className="row">
         <div className="col-md-6">
-            <input type="text" required={fieldsRequired} className="form-control"   value={value} onChange={onChange}  />
+            <input name={name} type={dataType} required={fieldsRequired} className="form-control"   value={value} onChange={onChange}  />
         </div>
         <div className="col-md-3">
         <select className="custom-select" value={fieldsType} onChange={onChangeSelect} >

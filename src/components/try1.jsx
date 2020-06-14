@@ -8,11 +8,11 @@ const FormDetail=(props)=>{
     const [key,setKey]=useState(localStorage.getItem('key'));
     const [name,setName]=useState(forms[key].name);
     const [description,setDescription]=useState(forms[key].description);
-    const [control, setControl]=useState([1,2,3]);
-    const onHandleChange=(e)=>{
-       const {name,value}=e.target;
-       console.log(value);
-    }
+    
+    const onHandleChange=(event)=>{
+        const a=event.target.value
+        console.log(a);
+    } 
     return(
         <form>
             <FormGroup id="form_ismi" label="Form İsmi" value={name} onChange={(e)=>setName(e.target.value)}/>

@@ -19,7 +19,7 @@ const TableList=()=>{
                 <tbody>
                     {
                         forms.map((list,inx)=>(  
-                               <TableDetails list={list} key={inx} index={inx+1}/>
+                               <TableDetails list={list} key={inx} index={inx}/>
                         ))
                     }
                 </tbody>
