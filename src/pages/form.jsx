@@ -8,7 +8,7 @@ function Form() {
     <div>
       <Container>
           <FormContextProvider>
-          <Link to={`/`} >Anasayfa</Link>
+            <Link to={`/`} >Anasayfa</Link>
             <FormDetail/>
           </FormContextProvider>
       </Container>

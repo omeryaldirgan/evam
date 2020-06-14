@@ -7,7 +7,7 @@ function App() {
     <div>
     <Switch>
       <Route exact path='/' component={Home} />
-      <Route path='/forms' component={Form}/>
+      <Route path='/forms/:id' component={Form}/>
     </Switch>
   </div>
   );

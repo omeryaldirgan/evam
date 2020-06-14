@@ -2,18 +2,8 @@ import React, { useState,useContext } from 'react'
 import {FormContext} from '../context/context';
 import FormGroup from './FormGroup';
 import Fields from './Fields';
-
-const formatDate=()=>{
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0'); //Ocak 0!
-    var yyyy = today.getFullYear();
-
-    return today = yyyy + '-' + dd + '-' + mm;
-}
-const AddForm=()=>{
-    const {dispatch}=useContext(FormContext);
-    const [createdAt,setCreatedAt]=useState(formatDate());
+const FormDetail=()=>{
+    const {forms}=useContext(FormContext);
     const [name,setName]=useState('');
     const [description,setDescription]=useState('');
 
@@ -29,26 +19,9 @@ const AddForm=()=>{
     const [fields3Type,setFields3Type]=useState('');
     const [fields3Required,setfields3Required]=useState(false);
     
-
-    const handleSubmit=(e)=>{
-        e.preventDefault();
-        dispatch({type:'ADD_FORM',form:{
-            name,description,createdAt,fields1,fields1Type,
-            fields1Required,fields2,fields2Type,fields2Required,
-            fields3,fields3Type,fields3Required
-        }});
-        setName('');
-        setDescription('')
-        setFields1('');
-        setFields1Type('');
-        setFields2('');
-        setFields2Type('');
-        setFields3('');
-        setFields3Type('');
-    }
-
+    
     return(
-        <form onSubmit={handleSubmit}>
+        <form>
             <FormGroup id="form_ismi" label="Form İsmi" value={name} onChange={(e)=>setName(e.target.value)}/>
             <FormGroup id="form_aciklama" label="Form Açıklaması" value={description} onChange={(e)=>setDescription(e.target.value)}/>
             <Fields
@@ -82,9 +55,9 @@ const AddForm=()=>{
                 onChangeCheckbox={(e)=>setfields3Required(e.target.checked ? true : false)}
             />
            
-            <button type='submit' className="btn btn-info float-right">Ekle</button>
+            <button type='submit' className="btn btn-info float-right">Güncelle</button>
         </form>
     )
 }
 
-export default AddForm;
+export default FormDetail;
