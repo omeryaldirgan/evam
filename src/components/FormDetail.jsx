@@ -1,35 +1,43 @@
-import React, { useState,useContext,useEffect } from 'react'
+import React, { useState,useContext,useReducer} from 'react'
 import {FormContext} from '../context/context';
 import FormGroup from './FormGroup';
-import Fields from './Fields';
+import FormFields from './FormFields';
 import {slugify} from '../util/util'
 const FormDetail=(props)=>{
     const {forms}=useContext(FormContext);
     const [key,setKey]=useState(localStorage.getItem('key'));
     const [name,setName]=useState(forms[key].name);
     const [description,setDescription]=useState(forms[key].description);
-    const [control, setControl]=useState([1,2,3]);
-    const onHandleChange=(e)=>{
-       const {name,value}=e.target;
-       console.log(value);
+
+    const [userInput, setUserInput] = useReducer(
+        (state, newState) => ({...state, ...newState}),{ }
+      );
+    const handleChange = (type,e) => {
+        const { name, value} = e.target;
+        if(type=='STRING'){
+            setUserInput({[name]: value.replace(/[^A-Za-z ]/gi, "")});
+        }
+        
     }
     return(
-        <form>
+        <form className="offset-md-2 col-md-8">
             <FormGroup id="form_ismi" label="Form İsmi" value={name} onChange={(e)=>setName(e.target.value)}/>
             <FormGroup id="form_aciklama" label="Form Açıklaması" value={description} onChange={(e)=>setDescription(e.target.value)}/>
             {
                 forms[key].fields.map((item,inx)=>(
-                    <Fields
+                    <FormFields
                         key={inx}
                         id={`check${inx}`}
                         label={item.name}
+                        value={userInput[slugify(item.name)]}
+                        name={slugify(item.name)}
                         fieldsRequired={item.required}
                         dataType={item.dataType == 'STRING' ? 'text':'number'}
-                        onChange={onHandleChange}
+                        onChange={(e)=>handleChange(item.dataType,e)}
                     />
                 ))
             }
-            <button type='submit' className="btn btn-info float-right">Güncelle</button>
+            <button  className="btn btn-info float-right">Güncelle</button>
         </form>
     )
 }

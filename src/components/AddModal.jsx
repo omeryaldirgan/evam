@@ -12,7 +12,7 @@ function AddModal() {
         <Modal.Header closeButton>
           <Modal.Title>Yeni Form Oluştur</Modal.Title>
         </Modal.Header>
-        <Modal.Body><AddForm/></Modal.Body>
+        <Modal.Body><AddForm handleClose={handleClose}/></Modal.Body>
       </Modal>
     </div>
   );

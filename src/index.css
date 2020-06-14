@@ -13,7 +13,6 @@ body {
  position: relative;
 }
 .table_tr:hover th::after{
-  color: #FF4858;
   content: 'x';
   position: absolute;
   color: white;
@@ -26,4 +25,7 @@ body {
   text-align: center;
   line-height: 15px;
   border-radius: 50%;
+}
+small{
+  color:#FF4858
 }
