@@ -24,9 +24,9 @@ export const formReducer=(state,action)=>{
              ]
            }]
           case 'SEARCH':
-            return Object.assign({}, state, {
-                searchText: action.value
-            });
+             const {value} = action;
+             const result = state.filter((e) => e.name.toLowerCase().match(value.trim().toLowerCase()));
+             return result;
          case 'REMOVE_FORM':
            return state.filter(form => form.name !== action.name);
         default:
